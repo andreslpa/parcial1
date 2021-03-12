@@ -12,7 +12,6 @@ function inicialize(){
     fetch(urlCategoriesDetail)
     .then(res => res.json())
     .then(body => {
-        console.log(body)
         let categories = body;
         selectedCategory = categories[0].name;
         currentCategory.textContent = selectedCategory;
@@ -20,10 +19,10 @@ function inicialize(){
             let category = categories[key];
             let li = document.createElement("li");
             li.textContent = category.name;
-            li.onclick = changeCategory(category.name);
+            li.onclick = changeCategory.bind(this, [category.name]);
             categoriesList.appendChild(li);
         }
-        changeCategory("Burgers")
+        changeCategory("Burguers");
 
     });
 }
@@ -33,12 +32,10 @@ function changeCategory(category){
     fetch(urlCategoriesDetail)
     .then(res => res.json())
     .then(body => {
-        console.log(body)
         let categories = body;
-        let categoryDetail = categories.filter((item) => item.name = category);
-        categoryDetail = categoryDetail[0];
+        let categoryDetail = categories.find(item => item.name == category)
         let products = categoryDetail.products;
-        console.log(categoryDetail);
+    
         categoryProducts.innerHTML = "";
         for(let key in products){
             let product = products[key];
