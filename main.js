@@ -15,25 +15,51 @@ function inicialize(){
         console.log(body)
         let categories = body;
         selectedCategory = categories[0].name;
+        currentCategory.textContent = selectedCategory;
         for(const key in categories){
             let category = categories[key];
             let li = document.createElement("li");
             li.textContent = category.name;
-            li.addEventListener()
+            li.onclick = changeCategory(category.name);
             categoriesList.appendChild(li);
         }
+        changeCategory("Burgers")
 
     });
 }
 
-function changeCategory(){
+function changeCategory(category){
+    currentCategory.textContent = category;
     fetch(urlCategoriesDetail)
     .then(res => res.json())
     .then(body => {
         console.log(body)
         let categories = body;
-        let categoryDetail = categories.filter((item) => item.name = selectedCategory);
+        let categoryDetail = categories.filter((item) => item.name = category);
+        categoryDetail = categoryDetail[0];
+        let products = categoryDetail.products;
         console.log(categoryDetail);
+        categoryProducts.innerHTML = "";
+        for(let key in products){
+            let product = products[key];
+            let li = document.createElement("li");
+            let name = document.createElement("p");
+            name.textContent = product.name;
+            let img = document.createElement("img");
+            img.src = product.image;
+            let description = document.createElement("p");
+            description.textContent = product.description;
+            let button = document.createElement("button")
+            button.textContent ="Add item";
+            button.onclick = addItem;
+            li.appendChild(name);
+            li.appendChild(img);
+            li.appendChild(description);
+            li.appendChild(button);
+
+            categoryProducts.appendChild(li);
+
+        }
     });
 }
 
