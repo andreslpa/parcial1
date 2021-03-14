@@ -1,0 +1,33 @@
+h1{
+    display: inline;
+    font-family: 'Satisfy', cursive;
+}
+footer{
+    font-weight: 500;
+}
+
+.text-light{
+    color: rgb(220, 227, 228);
+}
+.bg-dark,
+.btn-dark{
+    background-color: rgb(51,58,64);
+}
+.btn-confirm{
+    background-color: rgb(243, 232, 221);
+    border-color: rgb(0, 0, 0);
+}
+.btn-cancel{
+    background-color: rgb(251, 87, 91);
+    border-color: rgb(73, 187, 186);
+}
+
+#banner{
+    text-align: center;
+}
+#title{
+    text-align: center;
+}
+
+
+
